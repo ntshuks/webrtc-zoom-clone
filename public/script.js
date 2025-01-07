@@ -1,4 +1,4 @@
-const socket = io.connect('https://192.168.1.129:5001');
+const socket = io.connect('https://<your ip address>');
 
 const join = document.getElementById('username-form');
 const usernameInput = document.getElementById('username');
