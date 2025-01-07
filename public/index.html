@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="#">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nobby Video Chats</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h5>Nobby Video Chats</h5>
+    <div>
+        <ul class="alluserlist" id="alluserlist"></ul>
+      </div>
+    
+    <div id="container">
+        <video id="localvideo" playsinline autoplay controls muted></video>
+        <video id="remotevideo" playsinline autoplay controls></video>
+      <div>
+        <form id="username-form" method="POST">
+          <input type="text" id="username" placeholder="Enter your username">
+          <button id="username" type="submit">Enter</button>
+        </form>
+     </div>
+        <div>
+           <form id="call-form" method="POST">
+             <input type="text" id="callee" placeholder="Enter username to call">
+             <button id="call-button" type="submit">Call</button>
+           </form>
+        </div>
+        <div>
+          <div>
+            <form id="answer-form" method="POST">
+               <button id="answer-button" type="submit" disabled>Answer</button>
+            </form>
+          </div>
+          <div>
+            <form id="hangup-form" method="POST">
+              <button id="hangup-button" type="submit" disabled>HangUp</button>
+            </form>
+          </div>
+        </div>
+       </div>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
