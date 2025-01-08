@@ -1,4 +1,4 @@
-const socket = io.connect('https://<your ip address>');
+const socket = io.connect('https://192.168.1.129:5001');
 
 const join = document.getElementById('username-form');
 const usernameInput = document.getElementById('username');
@@ -101,6 +101,7 @@ socket.on('getoffer', ({offer, callee_id, caller_id}) =>{
      answercall(offer,caller_id,callee_id);
      answerbutton.disabled = true;
      callbutton.disabled = true;
+     answerbutton.style.backgroundColor = "#ffffff"; 
    });
 });
 
@@ -179,10 +180,28 @@ hangupform.addEventListener('submit', (e) => {
 });
 
 socket.on('closeconnection', () =>{
-   peerconnection.close();
-   location.reload();
-   alert("Bye...");
+   closecall();
 });
+
+function closecall() {
+   console.log('Is this being called?');
+   if (remotevideoEl.srcObject) {
+      remotevideoEl.srcObject.getTracks().forEach((track) =>{
+         track.stop();
+      });
+   }
+
+   if (localvideoEl.srcObject) {
+      localvideoEl.srcObject.getTracks().forEach((track) =>{
+         track.stop();
+      });
+   }
+   peerconnection.close();
+   peerconnection = null;
+   hangupbutton.disabled = false;
+   callbutton.disabled = false;
+   alert('Call Ended...');
+}
 
 socket.on("joinerror", (joined) => {
    alert('You have already joined - refresh page to start again');
@@ -190,6 +209,9 @@ socket.on("joinerror", (joined) => {
 
 socket.on('updateuserlist', (userlist) => {
    users = userlist;
+  console.log('Inside update userlist');
+  console.log(users);
+   //clear list before re populating
    alluserlist.innerText='';
    let item = document.createElement('li');
    item.textContent = 'Users: ';
@@ -197,9 +219,12 @@ socket.on('updateuserlist', (userlist) => {
    for (i=0 ; i < users.length ; i++) {
        item = document.createElement('li');
         item.textContent = users[i].username;
+       console.log('Inside Loop');
+       console.log(users[i].username);
         alluserlist.appendChild(item);
    }
 });
+
 
 function finduser2(username) {
    // search by username

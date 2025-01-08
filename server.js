@@ -12,7 +12,7 @@ require ('dotenv').config();
 const io = require('socket.io')(server, {
     cors: {
         origin: [
-            'https://<your ip address>'
+            'https://192.168.1.129:5001'
         ],
         methods: ["Get","POST"]
     }
