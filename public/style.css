@@ -1,10 +1,23 @@
+
+@media (max-width: 768px) {
 video {
     background: #222;
-    margin: 0 0 20px 0;
+    margin: 10px 20px 10px 10px;
     vertical-align: top;
-    --width: 48vw;
+    --width: 98vw;
     width: var(--width);
     height: calc(var(--width) * 0.6); }
+}
+
+@media (min-width: 769px) {
+    video {
+        background: #222;
+        margin: 0 0 20px 0;
+        vertical-align: top;
+        --width: 48vw;
+        width: var(--width);
+        height: calc(var(--width) * 0.6); }
+}
 
     ul.alluserlist {
         list-style-type: none;
